@@ -12,11 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START dockerfile]
-FROM python:3.7-slim
-RUN pip install flask
-WORKDIR /app
-COPY app.py /app/app.py
-ENTRYPOINT ["python"]
-CMD ["/app/app.py"]
-# [END dockerfile]
+import unittest
+from app import hello
+
+class TestHelloApp(unittest.TestCase):
+
+  def test_hello(self):
+    self.assertEqual(hello(), "Hello Word!\n")
+
+if __name__ == '__main__':
+  unittest.main()
